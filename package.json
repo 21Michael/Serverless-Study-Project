@@ -1,0 +1,33 @@
+{
+  "name": "serverless-study-project",
+  "version": "1.0.0",
+  "description": "Studying serverless concept by AWS lambda",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/21Michael/Serverless-Study-Project.git"
+  },
+  "keywords": [
+    "AWS",
+    "Node.js",
+    "JS",
+    "Serverless"
+  ],
+  "author": "Mikhail Rudiev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/21Michael/Serverless-Study-Project/issues"
+  },
+  "homepage": "https://github.com/21Michael/Serverless-Study-Project#readme",
+  "devDependencies": {
+    "serverless-offline": "^7.0.0"
+  },
+  "dependencies": {
+    "apollo-server-lambda": "^2.25.1",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "serverless-http": "^2.7.0"
+  }
+}

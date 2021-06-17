@@ -1,0 +1,90 @@
+service: serverless-study-project
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+plugins:
+  - serverless-offline
+
+resources: # CloudFormation template syntax from here on.
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: usersTable
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: email
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+          - AttributeName: email
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+functions:
+  graphql:
+    handler: ./lambdas/handler.graphQLServer
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+      - http:
+          path: graphql
+          method: get
+          cors: true
+  testPOST:
+    handler: ./lambdas/handler.createLambda
+    events:
+       - http:
+           path: /create
+           method: POST
+           cors: true
+           request:
+             parameters:
+               querystrings:
+                 url: true
+               headers:
+                 foo: false
+               paths:
+                 bar: false
+  testGET:
+    handler: ./lambdas/handler.gainLambda
+    events:
+      - http:
+          path: /gain/{id}
+          method: GET
+          request:
+            parameters:
+              paths:
+                id: true
+  testAPI:
+    handler: ./lambdas/handler.api
+    events:
+      - http: ANY /
+      - http: 'ANY /{proxy+}'
+  testReadDB:
+    handler: ./lambdas/handler.readFromDB
+    events:
+      - http:
+          path: /readFromDB/{id}
+          method: GET
+          request:
+            parameters:
+              paths:
+                id: true
+  testWriteDB:
+    handler: ./lambdas/handler.addToDB
+    events:
+      - http:
+          path: /addToDB
+          method: POST
