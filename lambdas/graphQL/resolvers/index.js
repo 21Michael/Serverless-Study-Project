@@ -3,7 +3,7 @@ const { mutations } = require('../mutations');
 
 const resolvers = {
   Query: queries,
- // Mutation: mutations,
+  Mutation: mutations,
 };
 
 module.exports = { resolvers };

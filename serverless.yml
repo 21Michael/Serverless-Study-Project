@@ -12,6 +12,27 @@ plugins:
 
 resources: # CloudFormation template syntax from here on.
   Resources:
+    testServerless:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: test-serverless
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: data
+            AttributeType: S
+          - AttributeName: time
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+          - AttributeName: email
+            KeyType: RANGE
+          - AttributeName: time
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:
