@@ -28,6 +28,7 @@
     "apollo-server-lambda": "^2.25.1",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
-    "serverless-http": "^2.7.0"
+    "serverless-http": "^2.7.0",
+    "uuid": "^8.3.2"
   }
 }

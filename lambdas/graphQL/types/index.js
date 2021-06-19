@@ -2,15 +2,19 @@ const { gql } = require('apollo-server-lambda');
 
 const typeDefs = gql`
   type Data {
-    id: String
-    data: String
-    time: String
+    id: ID!
+    name: String
+    age: Int
+    reffer: String
+    interests: [String]
+    how: Int
+    rating: Int
   }
   type Query {
-    getData(id: String!): Data
+    getData: [Data]
   }
   type Mutation {
-    postData(data: String!): Data
+    postData(name: String!, age: Int!, reffer: String!, interests: [String]!, how: Int!, rating: Int!): String 
   }
 `;
 

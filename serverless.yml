@@ -19,16 +19,12 @@ resources: # CloudFormation template syntax from here on.
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
-          - AttributeName: data
-            AttributeType: S
-          - AttributeName: time
+          - AttributeName: name
             AttributeType: S
         KeySchema:
           - AttributeName: id
             KeyType: HASH
-          - AttributeName: email
-            KeyType: RANGE
-          - AttributeName: time
+          - AttributeName: name
             KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1

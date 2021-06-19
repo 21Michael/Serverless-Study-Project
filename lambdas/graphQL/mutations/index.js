@@ -1,12 +1,17 @@
 const AWS = require('aws-sdk');
 const client = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
+const uuid = require('uuid');
 
 const mutations = {
-  postData: async (_, { data }) => {
+  postData: async (_, { name, age, reffer, interests, how, rating }) => {
     const Item = {
-      id: String(Math.floor(Math.random() * 100) + 1),
-      time: (new Date()).toISOString(),
-      data
+      id: uuid.v4(),
+      name,
+      age,
+      reffer,
+      interests,
+      how,
+      rating
     };
     const params = {
       TableName: 'test-serverless',
@@ -15,8 +20,7 @@ const mutations = {
     };
 
     await client.put(params).promise();
-
-    return { id: Item.id };
+    return "Success!";
   },
 };
 
